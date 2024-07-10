@@ -69,6 +69,10 @@ cover: ## Run unit tests with coverage report
 build-linux: ## Compile for linux
 	GOOS=linux GOARCH=amd64 CGO_ENABLED=0 go build -trimpath -ldflags '-s -w -extldflags "-static"' -o bin/${BINARY}-linux cmd/main.go
 
+.PHONY: build-windows
+build-windows: ## Compile for windows
+    $env:GOOS="windows"; $env:GOARCH="amd64"; $env:CGO_ENABLED=0; go build -trimpath -ldflags '-s -w -extldflags "-static"' -o bin/ipxedust-windows.exe cmd/main.go
+
 .PHONY: build-darwin
 build-darwin: ## Compile for darwin
 	GOOS=darwin GOARCH=amd64 CGO_ENABLED=0 go build -trimpath -ldflags "-s -w -extldflags '-static'" -o bin/${BINARY}-darwin cmd/main.go
